@@ -7,7 +7,7 @@ import { Project, Stats } from '../models/project.model';
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl = 'http://wequotebackend.test/api'; // Standard PHP setup
+  private apiUrl = 'http://127.0.0.1:8000/api'
 
   constructor(private http: HttpClient) { }
 

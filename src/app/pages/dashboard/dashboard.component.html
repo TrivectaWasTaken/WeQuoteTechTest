@@ -58,7 +58,7 @@
                 <div class="w-32 h-32 rounded-full border-8 border-teal-400 border-t-teal-100 flex items-center justify-center">
                     <div class="text-center">
                         <p class="text-xs text-gray-500">{{ stats()?.last_payments?.[0]?.month_year | slice:0:3 }}</p>
-                        <p class="font-bold">11.2%</p>
+                        <p class="font-bold">{{ stats()?.last_payments?.[0]?.total_paid | number:'1.2-2' }}</p>
                     </div>
                 </div>
             </div>
