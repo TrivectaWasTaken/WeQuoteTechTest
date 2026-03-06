@@ -1,6 +1,10 @@
 # WeQuoteTechTestTask
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
+## Requirements
+
+Install Node
+Install Npm
+Install Composer
 
 ## Development server
 
