@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "tailwindcss";
+@source "./app/**/*.html";
+
+@theme {
+  --color-primary: #0089ff;
+  --color-secondary: #000a2d;
+  --color-gray-border: #e2e8f0;
+  --color-gray-bg: #f8fafc;
+  --color-gray-text: #64748b;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+.table-row-hover:hover {
+  background-color: #f1f5f9;
+}
