@@ -7,7 +7,7 @@ import { Project, Stats } from '../models/project.model';
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl = 'http://127.0.0.1:8000/api'
+  private apiUrl = 'http://3.8.177.41/api/api'
 
   constructor(private http: HttpClient) { }
 
