@@ -7,7 +7,7 @@ import { Project, Stats } from '../models/project.model';
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl = 'http://3.8.177.41/api/api'
+  private apiUrl = 'http://3.8.177.41/api'
 
   constructor(private http: HttpClient) { }
 
@@ -39,10 +39,11 @@ export class ProjectService {
     return this.http.get<any>(`${this.apiUrl}/organisation/${id}`);
   }
 
+  getCustomer(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/customers/${id}`);
+  }
+
   getProject(id: number): Observable<any> {
-    // We can filter by ID in the projects.php or create a dedicated one.
-    // Let's use projects.php?id=... if supported or just filter the list for now.
-    // Better: update projects.php to handle id.
     return this.http.get<any>(`${this.apiUrl}/projects/${id}`);
   }
 }

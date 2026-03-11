@@ -13,6 +13,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./project-hub.component.css']
 })
 export class ProjectHubComponent implements OnInit, OnDestroy {
+  activeTab = signal<string>('overview');
+  invoices = signal<any[]>([]);
+  quotes = signal<any[]>([]);
   projectId = signal<number|null>(null);
   customerId = signal<string|null>(null);
   project = signal<Project|null>(null);
@@ -38,8 +41,14 @@ export class ProjectHubComponent implements OnInit, OnDestroy {
       if (projectId) {
         this.projectId.set(+projectId);
         this.loadProjectDetails(+projectId);
+        this.projectService.getInvoices(projectId).subscribe(data => this.invoices.set(data));
+        this.projectService.getQuotes(projectId).subscribe(data => this.quotes.set(data));
       }
     }));
+  }
+
+  setTab(tab: string): void {
+    this.activeTab.set(tab);
   }
 
   ngOnDestroy(): void {

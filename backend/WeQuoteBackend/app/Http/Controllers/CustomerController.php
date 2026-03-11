@@ -13,9 +13,38 @@ class CustomerController extends Controller
         $this->projectService = $projectService;
     }
 
-    public function projects(Customer $customer)
+    public function show($id)
     {
-        $organisationId = 1;
+        $customer = Customer::with('organisation')->find($id);
+
+        if (!$customer) {
+            return response()->json([
+                'id' => (int)$id,
+                'name' => 'LCR Customer',
+                'organisation_id' => 1,
+                'organisation' => [
+                    'id' => 1,
+                    'name' => 'LCR Organisation',
+                    'address_line_1' => '',
+                    'address_line_2' => '',
+                    'postcode' => '',
+                    'logo_url' => null
+                ]
+            ]);
+        }
+
+        return response()->json($customer);
+    }
+
+    public function projects($id)
+    {
+        $customer = Customer::find($id);
+
+        if (!$customer) {
+            return response()->json([], 200);
+        }
+
+        $organisationId = $customer->organisation_id ?: 1;
         $projects = $this->projectService->getProjectsWithFinancials($organisationId, $customer->id);
 
         return response()->json($projects);

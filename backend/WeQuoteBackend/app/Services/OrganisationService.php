@@ -94,14 +94,7 @@ class OrganisationService
 
         $currentUser = DB::table('userdb')
             ->where('default_organisation_id', $organisationId)
-            ->where('name', 'Lee Roche')
             ->first(['id', 'name']);
-
-        if (!$currentUser) {
-            $currentUser = DB::table('userdb')
-                ->where('default_organisation_id', $organisationId)
-                ->first(['id', 'name']);
-        }
 
         return [
             'total_projects' => $totalProjects,

@@ -13,8 +13,14 @@ class InvoiceController extends Controller
         $this->invoiceService = $invoiceService;
     }
 
-    public function index(Project $project)
+    public function index($id)
     {
+        $project = Project::find($id);
+
+        if (!$project) {
+            return response()->json([], 200);
+        }
+
         $invoices = $this->invoiceService->getProjectInvoices($project->id);
 
         return response()->json($invoices);

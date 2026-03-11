@@ -2,30 +2,30 @@
   <nav class="bg-white px-8 py-5 flex items-center justify-between border-b border-gray-100 shadow-sm sticky top-0 z-50">
     <div class="flex items-center space-x-6">
       <button [routerLink]="customerId() ? ['/customer', customerId()] : ['/']"
-              class="p-2.5 hover:bg-[#f8fafc] rounded-xl border border-gray-100 transition-colors group">
+              class="p-2.5 hover:bg-[#f8fafc] rounded-2xl border-2 border-gray-50 transition-all group shadow-sm">
         <svg class="w-5 h-5 text-gray-400 group-hover:text-[#0089ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
       </button>
       <div class="flex items-center space-x-3 text-sm">
-        <div class="p-2 bg-[#f8fafc] rounded-lg">
+        <div class="p-2 bg-[#f8fafc] rounded-xl border border-gray-50 shadow-inner">
             <svg class="w-4 h-4 text-[#0089ff]" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
         </div>
-        <span class="cursor-pointer font-bold text-gray-400 hover:text-[#000a2d]" [routerLink]="customerId() ? ['/customer', customerId()] : ['/']">Home</span>
+        <span class="cursor-pointer font-black text-gray-400 hover:text-[#000a2d] transition-colors" [routerLink]="customerId() ? ['/customer', customerId()] : ['/']">HOME</span>
         <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-        <span class="font-black text-[#000a2d] tracking-tight">Project Hub</span>
+        <span class="font-black text-[#000a2d] tracking-[0.1em] uppercase">PROJECT HUB</span>
       </div>
     </div>
     <div class="flex items-center space-x-8">
         <div class="flex items-center space-x-6">
             <button class="relative p-2 text-gray-400 hover:text-[#0089ff] transition-colors">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-                <span class="absolute top-2 right-2 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white"></span>
+                <span class="absolute top-2 right-2 block h-2.5 w-2.5 rounded-full bg-red-500 ring-4 ring-white"></span>
             </button>
-            <div class="flex items-center space-x-3 pl-6 border-l border-gray-100">
+            <div class="flex items-center space-x-4 pl-6 border-l border-gray-100">
                 <div class="text-right hidden sm:block">
-                  <p class="font-bold text-[#000a2d] leading-none">{{ stats()?.current_user?.name || 'Lee Roche' }}</p>
-                  <p class="text-[#0089ff] text-[10px] font-bold uppercase tracking-widest mt-1">Project Manager</p>
+                  <p class="font-black text-[#000a2d] text-base leading-none">{{ stats()?.current_user?.name || 'Lee Roche' }}</p>
+                  <p class="text-[#0089ff] text-[10px] font-black uppercase tracking-widest mt-1">Project Manager</p>
                 </div>
-                <div class="w-12 h-12 rounded-full bg-pink-100 border-2 border-white shadow-sm flex items-center justify-center font-bold text-pink-600 text-lg">
+                <div class="w-12 h-12 rounded-full bg-pink-100 border-4 border-white shadow-sm flex items-center justify-center font-black text-pink-600 text-lg">
                     {{ (stats()?.current_user?.name || 'Lee Roche') | slice:0:1 }}
                 </div>
             </div>
@@ -33,76 +33,75 @@
     </div>
   </nav>
 
-  <main class="max-w-[1440px] mx-auto p-10">
+  <main class="max-w-[1440px] mx-auto p-8">
     @if(project()) {
     <div class="flex flex-col lg:flex-row justify-between items-start mb-12 space-y-8 lg:space-y-0">
-      <div>
-        <div class="inline-flex items-center px-3 py-1 bg-[#0089ff]/10 text-[#0089ff] text-[10px] font-black uppercase tracking-widest rounded-full mb-4">
-            Project Overview
+      <div class="pt-2">
+        <div class="inline-flex items-center px-4 py-1.5 bg-[#0089ff]/10 text-[#0089ff] text-[10px] font-black uppercase tracking-[0.2em] rounded-lg mb-4 shadow-sm">
+            PROJECT OVERVIEW
         </div>
-        <h1 class="text-4xl font-black text-[#000a2d] tracking-tight mb-4">{{ project()?.name }}</h1>
-        <div class="space-y-1.5">
-            <h2 class="text-xl font-extrabold text-[#000a2d]">{{ project()?.customer_name }}</h2>
-            <p class="text-gray-500 font-medium text-sm max-w-md">
+        <h1 class="text-4xl font-black text-[#000a2d] tracking-tight mb-4 leading-tight">{{ project()?.name }}</h1>
+        <div class="space-y-1">
+            <h2 class="text-xl font-black text-[#000a2d]">{{ project()?.customer_name }}</h2>
+            <p class="text-gray-400 font-bold text-base max-w-lg leading-relaxed">
                 {{ project()?.address_line_1 }}, {{ project()?.address_line_2 }}<br>
                 {{ project()?.posttown || project()?.post_town }} {{ project()?.postcode }}
             </p>
-            <div class="flex space-x-6 text-sm mt-4">
-                <a [href]="'mailto:' + project()?.customer_email" class="flex items-center space-x-2 text-[#0089ff] font-bold hover:underline" *ngIf="project()?.customer_email">
+            <div class="flex flex-col space-y-2 mt-4">
+                <a [href]="'mailto:' + project()?.customer_email" class="flex items-center space-x-2 text-[#0089ff] font-black hover:underline text-base" *ngIf="project()?.customer_email">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
                     <span>{{ project()?.customer_email }}</span>
                 </a>
-                <a [href]="'tel:' + project()?.customer_phone" class="flex items-center space-x-2 text-[#0089ff] font-bold hover:underline" *ngIf="project()?.customer_phone">
+                <a [href]="'tel:' + project()?.customer_phone" class="flex items-center space-x-2 text-[#0089ff] font-black hover:underline text-base" *ngIf="project()?.customer_phone">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 004.582 4.582l.773-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
                     <span>{{ project()?.customer_phone }}</span>
                 </a>
             </div>
         </div>
-        <div class="mt-10 flex space-x-4">
+        <div class="mt-8 flex space-x-4">
             <button [routerLink]="['/project-hub', customerId(), projectId(), 'quotes']"
-                    class="bg-[#000a2d] text-white px-8 py-4 rounded-xl font-black uppercase text-[11px] tracking-[0.15em] shadow-lg hover:bg-[#000a2d]/90 transition transform hover:-translate-y-0.5 active:translate-y-0">View Your Quotes</button>
-            <button [routerLink]="['/project-hub', customerId(), projectId(), 'invoices']"
-                    class="bg-white text-[#000a2d] border-2 border-gray-100 px-8 py-4 rounded-xl font-black uppercase text-[11px] tracking-[0.15em] hover:bg-gray-50 transition transform hover:-translate-y-0.5 active:translate-y-0">View Invoices</button>
+                    class="bg-[#000a2d] text-white px-8 py-4 rounded-2xl font-black uppercase text-[10px] tracking-[0.2em] shadow-lg hover:bg-[#000a2d]/90 transition transform hover:-translate-y-1 active:translate-y-0">View Your Quotes</button>
+            <button class="bg-white text-[#000a2d] border-2 border-gray-100 px-8 py-4 rounded-2xl font-black uppercase text-[10px] tracking-[0.2em] shadow-sm hover:shadow-lg hover:bg-gray-50 transition-all transform hover:-translate-y-1 active:translate-y-0">View Payment Details</button>
         </div>
       </div>
 
-      <div class="bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 w-full lg:w-auto min-w-[500px]">
-        <div class="flex justify-between items-center mb-10">
+      <div class="bg-white p-8 rounded-[2rem] shadow-[0_15px_50px_rgb(0,0,0,0.05)] border border-gray-50 w-full lg:w-auto min-w-[500px]">
+        <div class="flex justify-between items-start mb-10">
             <div class="text-left">
-                <p class="text-gray-400 text-[10px] font-black uppercase tracking-widest mb-1">Paid so far</p>
-                <p class="text-3xl font-black text-[#000a2d]">£{{ project()?.paid_total | number:'1.0-0' }}</p>
-                <p class="text-[9px] text-gray-400 font-bold uppercase mt-1">EXC. VAT</p>
+                <p class="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em] mb-1">Paid so far</p>
+                <p class="text-4xl font-black text-[#000a2d]">£{{ project()?.paid_total | number:'1.0-0' }}</p>
+                <p class="text-[9px] text-gray-300 font-bold uppercase mt-1.5 tracking-widest">EXC. VAT</p>
             </div>
-            <div class="h-12 w-px bg-gray-100 mx-8"></div>
+            <div class="h-16 w-px bg-gray-100 mx-8"></div>
             <div class="text-left">
-                <p class="text-gray-400 text-[10px] font-black uppercase tracking-widest mb-1">Left to pay</p>
-                <p class="text-3xl font-black text-orange-400">£{{ project()?.outstanding_total | number:'1.0-0' }}</p>
-                <p class="text-[9px] text-gray-400 font-bold uppercase mt-1">EXC. VAT</p>
+                <p class="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em] mb-1">Left to pay</p>
+                <p class="text-4xl font-black text-orange-400">£{{ project()?.outstanding_total | number:'1.0-0' }}</p>
+                <p class="text-[9px] text-gray-300 font-bold uppercase mt-1.5 tracking-widest">EXC. VAT</p>
             </div>
-            <div class="h-12 w-px bg-gray-100 mx-8"></div>
+            <div class="h-16 w-px bg-gray-100 mx-8"></div>
             <div class="text-right">
-                <p class="text-gray-400 text-[10px] font-black uppercase tracking-widest mb-1">Total Project</p>
-                <p class="text-3xl font-black text-[#000a2d]">£{{ project()?.net_total | number:'1.0-0' }}</p>
-                <p class="text-[9px] text-gray-400 font-bold uppercase mt-1">EXC. VAT</p>
+                <p class="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em] mb-1">Total Project</p>
+                <p class="text-4xl font-black text-[#000a2d]">£{{ project()?.net_total | number:'1.0-0' }}</p>
+                <p class="text-[9px] text-gray-300 font-bold uppercase mt-1.5 tracking-widest">EXC. VAT</p>
             </div>
         </div>
         <div class="space-y-3">
-            <div class="flex justify-between items-center">
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Payment Summary</span>
-                <span class="text-xs font-black text-[#0089ff]">£{{ project()?.paid_total | number:'1.0-0' }} <span class="text-gray-300">/ £{{ project()?.net_total | number:'1.0-0' }}</span></span>
+            <div class="flex justify-between items-end mb-1">
+                <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">PAYMENT SUMMARY</span>
+                <span class="text-base font-black text-[#0089ff]">£{{ project()?.paid_total | number:'1.0-0' }} <span class="text-gray-200">/ £{{ project()?.net_total | number:'1.0-0' }}</span></span>
             </div>
-            <div class="w-full h-4 bg-gray-100 rounded-full overflow-hidden flex shadow-inner">
-                <div class="h-full bg-teal-400 transition-all duration-700 ease-out" [style.width.%]="getPaidWidth()"></div>
-                <div class="h-full bg-orange-400 transition-all duration-700 ease-out delay-100" [style.width.%]="getOutstandingWidth()"></div>
+            <div class="w-full h-4 bg-[#f8fafc] rounded-full overflow-hidden flex shadow-inner border border-gray-50">
+                <div class="h-full bg-teal-400 transition-all duration-1000 ease-out shadow-[0_0_15px_rgba(45,212,191,0.3)]" [style.width.%]="getPaidWidth()"></div>
+                <div class="h-full bg-orange-400 transition-all duration-1000 ease-out delay-150" [style.width.%]="getOutstandingWidth()"></div>
             </div>
-            <div class="flex space-x-6 pt-2">
+            <div class="flex space-x-8 pt-2">
                 <div class="flex items-center space-x-2">
-                    <div class="w-2 h-2 rounded-full bg-teal-400"></div>
-                    <span class="text-[9px] font-black text-gray-400 uppercase">Paid</span>
+                    <div class="w-2.5 h-2.5 rounded-full bg-teal-400 shadow-sm"></div>
+                    <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest">Paid</span>
                 </div>
                 <div class="flex items-center space-x-2">
-                    <div class="w-2 h-2 rounded-full bg-orange-400"></div>
-                    <span class="text-[9px] font-black text-gray-400 uppercase">Outstanding</span>
+                    <div class="w-2.5 h-2.5 rounded-full bg-orange-400 shadow-sm"></div>
+                    <span class="text-[9px] font-black text-gray-400 uppercase tracking-widest">Outstanding</span>
                 </div>
             </div>
         </div>
@@ -119,107 +118,199 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-16">
         <!-- Quotes Card -->
         <button [routerLink]="['/project-hub', customerId(), projectId(), 'quotes']"
-             class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 hover:border-[#0089ff]/30 hover:shadow-lg transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-1">
-            <div class="w-12 h-12 bg-[#f8fafc] rounded-xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6">
+             class="bg-white p-8 rounded-2xl shadow-[0_10px_40px_rgb(0,0,0,0.03)] border-2 transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-2"
+             [ngClass]="activeTab() === 'quotes' ? 'border-[#0089ff] shadow-lg shadow-[#0089ff]/10' : 'border-white hover:border-gray-100'">
+            <div class="w-12 h-12 bg-[#f8fafc] rounded-2xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6 shadow-sm">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
             </div>
             <div>
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Total Quotes</span>
-                <div class="flex items-end space-x-2">
-                    <span class="text-3xl font-black text-[#000a2d] leading-none">{{ project()?.quote_count || '0' }}</span>
-                    <span class="bg-gray-100 px-2 py-0.5 rounded text-[10px] font-black text-gray-500 mb-0.5">FILES</span>
+                <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] block mb-2">Quotes</span>
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl font-black text-[#000a2d] leading-none">{{ project()?.quote_count || '0' | number:'2.0-0' }}</span>
                 </div>
             </div>
         </button>
 
         <!-- Invoices Card -->
         <button [routerLink]="['/project-hub', customerId(), projectId(), 'invoices']"
-             class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 hover:border-[#0089ff]/30 hover:shadow-lg transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-1">
-            <div class="w-12 h-12 bg-[#f8fafc] rounded-xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6">
+             class="bg-white p-8 rounded-2xl shadow-[0_10px_40px_rgb(0,0,0,0.03)] border-2 transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-2"
+             [ngClass]="activeTab() === 'invoices' ? 'border-[#0089ff] shadow-lg shadow-[#0089ff]/10' : 'border-white hover:border-gray-100'">
+            <div class="w-12 h-12 bg-[#f8fafc] rounded-2xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6 shadow-sm">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m4 0h1m-7 4h12a2 2 0 002-2V5a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
             </div>
             <div>
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Invoices</span>
-                <div class="flex items-end space-x-2">
-                    <span class="text-3xl font-black text-[#000a2d] leading-none">{{ project()?.invoice_count || '0' }}</span>
-                    <span class="bg-blue-50 px-2 py-0.5 rounded text-[10px] font-black text-blue-600 mb-0.5">ACTIVE</span>
+                <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] block mb-2">Invoices</span>
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl font-black text-[#000a2d] leading-none">{{ project()?.invoice_count || '0' | number:'2.0-0' }}</span>
                 </div>
             </div>
         </button>
 
         <!-- Drawings Card -->
-        <button class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 hover:border-[#0089ff]/30 hover:shadow-lg transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-1">
-            <div class="w-12 h-12 bg-[#f8fafc] rounded-xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6">
+        <button class="bg-white p-8 rounded-2xl shadow-[0_10px_40px_rgb(0,0,0,0.03)] border-2 border-white hover:border-gray-100 hover:shadow-lg transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-2">
+            <div class="w-12 h-12 bg-[#f8fafc] rounded-2xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6 shadow-sm">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
             </div>
             <div>
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Drawings</span>
-                <div class="flex items-end space-x-2">
+                <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] block mb-2">Drawings</span>
+                <div class="flex items-center space-x-3">
                     <span class="text-3xl font-black text-[#000a2d] leading-none">01</span>
-                    <span class="bg-gray-100 px-2 py-0.5 rounded text-[10px] font-black text-gray-500 mb-0.5">REVS</span>
                 </div>
             </div>
         </button>
 
         <!-- Warranty Card -->
-        <button class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 hover:border-[#0089ff]/30 hover:shadow-lg transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-1">
-            <div class="w-12 h-12 bg-[#f8fafc] rounded-xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6">
+        <button class="bg-white p-8 rounded-2xl shadow-[0_10px_40px_rgb(0,0,0,0.03)] border-2 border-white hover:border-gray-100 hover:shadow-lg transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-2">
+            <div class="w-12 h-12 bg-[#f8fafc] rounded-2xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6 shadow-sm">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
             </div>
             <div>
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Warranty</span>
-                <div class="flex items-end space-x-2">
+                <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] block mb-2">Warranty</span>
+                <div class="flex items-center space-x-3">
                     <span class="text-3xl font-black text-[#000a2d] leading-none">03</span>
-                    <span class="bg-teal-50 px-2 py-0.5 rounded text-[10px] font-black text-teal-600 mb-0.5">YEARS</span>
                 </div>
             </div>
         </button>
 
         <!-- Progress Card -->
-        <button class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 hover:border-[#0089ff]/30 hover:shadow-lg transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-1">
-            <div class="w-12 h-12 bg-[#f8fafc] rounded-xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6">
+        <button class="bg-white p-8 rounded-2xl shadow-[0_10px_40px_rgb(0,0,0,0.03)] border-2 border-white hover:border-gray-100 hover:shadow-lg transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-2">
+            <div class="w-12 h-12 bg-[#f8fafc] rounded-2xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6 shadow-sm">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
             </div>
             <div>
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Work Progress</span>
-                <div class="flex items-end space-x-2">
-                    <span class="text-3xl font-black text-[#000a2d] leading-none">85%</span>
-                    <span class="bg-orange-50 px-2 py-0.5 rounded text-[10px] font-black text-orange-600 mb-0.5">PHASE 3</span>
+                <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] block mb-2">Progress</span>
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl font-black text-[#000a2d] leading-none">03</span>
                 </div>
             </div>
         </button>
 
         <!-- Change Orders -->
-        <button class="bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100 hover:border-[#0089ff]/30 hover:shadow-lg transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-1">
-            <div class="w-12 h-12 bg-[#f8fafc] rounded-xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6">
+        <button class="bg-white p-8 rounded-2xl shadow-[0_10px_40px_rgb(0,0,0,0.03)] border-2 border-white hover:border-gray-100 hover:shadow-lg transition-all flex flex-col justify-between items-start group w-full text-left transform hover:-translate-y-2">
+            <div class="w-12 h-12 bg-[#f8fafc] rounded-2xl flex items-center justify-center text-gray-400 group-hover:text-[#0089ff] group-hover:bg-[#0089ff]/5 transition-all mb-6 shadow-sm">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
             <div>
-                <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-2">Change Orders</span>
-                <div class="flex items-end space-x-2">
-                    <span class="text-3xl font-black text-[#000a2d] leading-none">02</span>
-                    <span class="bg-pink-50 px-2 py-0.5 rounded text-[10px] font-black text-pink-600 mb-0.5">NEW</span>
+                <span class="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] block mb-2">Change Orders</span>
+                <div class="flex items-center space-x-3">
+                    <span class="text-3xl font-black text-[#000a2d] leading-none">03</span>
                 </div>
             </div>
         </button>
     </div>
 
-    <!-- Dashboard Content Area (Preview) -->
-    <div class="bg-white rounded-[2rem] shadow-[0_8px_40px_rgb(0,0,0,0.03)] border border-gray-100 overflow-hidden min-h-[400px]">
-        <div class="p-10">
-            <div class="flex justify-between items-end mb-8">
-                <div>
-                    <h4 class="text-2xl font-black text-[#000a2d] tracking-tight">Recent Project Activity</h4>
-                    <p class="text-gray-400 font-bold text-sm mt-1 uppercase tracking-widest">Click a card above to view full details</p>
-                </div>
+    <!-- Overview Area -->
+    <div class="bg-white rounded-[2rem] shadow-[0_20px_60px_rgb(0,0,0,0.05)] border border-gray-100 overflow-hidden min-h-[400px]">
+        <div class="px-10 py-8 border-b border-gray-50 flex justify-between items-center bg-white/50 backdrop-blur-sm">
+            <h4 class="text-2xl font-black text-[#000a2d] tracking-tight">Overview</h4>
+            <div class="flex space-x-10">
+                <button (click)="setTab('invoices')"
+                        [ngClass]="activeTab() === 'invoices' ? 'text-[#000a2d] border-[#000a2d]' : 'text-gray-400 border-transparent hover:text-gray-600'"
+                        class="text-lg font-black uppercase tracking-widest border-b-4 pb-2 transition-all">Invoices</button>
+                <button (click)="setTab('quotes')"
+                        [ngClass]="activeTab() === 'quotes' ? 'text-[#000a2d] border-[#000a2d]' : 'text-gray-400 border-transparent hover:text-gray-600'"
+                        class="text-lg font-black uppercase tracking-widest border-b-4 pb-2 transition-all">Quotes</button>
             </div>
+        </div>
 
-            <div class="h-64 flex flex-col items-center justify-center space-y-6 text-center">
-                <div class="w-20 h-20 bg-[#f8fafc] rounded-full flex items-center justify-center text-gray-200">
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <div class="p-10">
+            @if(activeTab() === 'overview') {
+                <div class="h-64 flex flex-col items-center justify-center space-y-6 text-center">
+                    <div class="w-24 h-24 bg-[#f8fafc] rounded-full flex items-center justify-center text-gray-200 shadow-inner">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <p class="text-gray-400 font-black text-lg max-w-sm uppercase tracking-widest leading-relaxed">Select a category from the tiles above to manage your project assets.</p>
                 </div>
-                <p class="text-gray-400 font-bold text-sm">Select a category from the tiles above to manage your project assets.</p>
-            </div>
+            }
+
+            @if(activeTab() === 'invoices') {
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-separate border-spacing-0">
+                        <thead class="bg-[#f8fafc] text-gray-400 text-[11px] font-black uppercase tracking-[0.25em]">
+                            <tr>
+                                <th class="px-8 py-6 border-b border-gray-50">NAME</th>
+                                <th class="px-8 py-6 border-b border-gray-50">TYPE</th>
+                                <th class="px-8 py-6 border-b border-gray-50">ISSUED ON</th>
+                                <th class="px-8 py-6 border-b border-gray-50">STATUS</th>
+                                <th class="px-8 py-6 border-b border-gray-50 text-right">NET TOTAL</th>
+                                <th class="px-8 py-6 border-b border-gray-50"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50">
+                            @for(invoice of invoices(); track invoice) {
+                                <tr class="hover:bg-[#f8fafc] transition-all group cursor-pointer" [routerLink]="['/project-hub', customerId(), projectId(), 'invoices']">
+                                    <td class="px-8 py-8">
+                                        <p class="font-black text-[#000a2d] text-base mb-1 group-hover:text-[#0089ff] transition-colors">Invoice for {{ project()?.name }}</p>
+                                        <p class="text-xs font-bold text-gray-400">#{{ invoice.invoice_no }} <span class="ml-2">{{ invoice.user_name }}</span></p>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <span class="px-3 py-1 bg-gray-100 text-gray-500 rounded-lg text-[9px] font-black uppercase tracking-widest border border-gray-200">STANDARD</span>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <p class="font-black text-[#000a2d] text-base">{{ invoice.bill_date | date:'dd/MM/yyyy' }}</p>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <span [ngClass]="invoice.status === 'paid' ? 'bg-teal-400 shadow-teal-400/20' : 'bg-orange-400 shadow-orange-400/20'"
+                                              class="text-white text-[9px] px-2.5 py-1.5 rounded-lg font-black uppercase tracking-widest shadow-lg">{{ invoice.status }}</span>
+                                    </td>
+                                    <td class="px-8 py-8 text-right min-w-[180px]">
+                                        <p class="text-xl font-black text-[#000a2d]">£{{ invoice.total_amount | number:'1.2-2' }}</p>
+                                        <div class="h-2 w-full bg-gray-100 rounded-full mt-3 overflow-hidden">
+                                            <div class="h-full bg-teal-400" [style.width.%]="invoice.status === 'paid' ? 100 : 40"></div>
+                                        </div>
+                                    </td>
+                                    <td class="px-8 py-8 text-right">
+                                        <button class="flex items-center space-x-2 text-[#000a2d] font-black hover:text-[#0089ff] transition-colors uppercase text-xs tracking-widest">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1M7 10l5 5m0 0l5-5m-5 5V3"></path></svg>
+                                            <span>Statement</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+            @if(activeTab() === 'quotes') {
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-separate border-spacing-0">
+                        <thead class="bg-[#f8fafc] text-gray-400 text-[11px] font-black uppercase tracking-[0.25em]">
+                            <tr>
+                                <th class="px-8 py-6 border-b border-gray-50">REFERENCE</th>
+                                <th class="px-8 py-6 border-b border-gray-50">ASSIGNED TO</th>
+                                <th class="px-8 py-6 border-b border-gray-50">STAGE</th>
+                                <th class="px-8 py-6 border-b border-gray-50">MODIFIED</th>
+                                <th class="px-8 py-6 border-b border-gray-50 text-right">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50">
+                            @for(quote of quotes(); track quote) {
+                                <tr class="hover:bg-[#f8fafc] transition-all group cursor-pointer" [routerLink]="['/project-hub', customerId(), projectId(), 'quotes']">
+                                    <td class="px-8 py-8">
+                                        <p class="font-black text-[#000a2d] text-lg group-hover:text-[#0089ff] transition-colors">{{ quote.reference_no }}</p>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-8 h-8 rounded-full bg-pink-100 border-2 border-white shadow-sm flex items-center justify-center text-[10px] font-black text-pink-600">{{ (quote.user_name || 'L') | slice:0:1 }}</div>
+                                            <span class="font-black text-[#000a2d] text-base">{{ quote.user_name || 'Lee Roche' }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <span class="px-3 py-1.5 bg-indigo-50 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-xl border border-indigo-100 shadow-sm">{{ quote.stage }}</span>
+                                    </td>
+                                    <td class="px-8 py-8">
+                                        <p class="font-black text-[#000a2d] text-base">{{ quote.modified_datetime | date:'dd MMM yyyy' }}</p>
+                                    </td>
+                                    <td class="px-8 py-8 text-right">
+                                        <p class="text-2xl font-black text-[#000a2d]">£{{ quote.total_price | number:'1.2-2' }}</p>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
         </div>
     </div>
   </main>

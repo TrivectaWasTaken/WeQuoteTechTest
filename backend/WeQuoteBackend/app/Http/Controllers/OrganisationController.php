@@ -13,14 +13,30 @@ class OrganisationController extends Controller
         $this->organisationService = $organisationService;
     }
 
-    public function show(Organisation $organisation)
+    public function show($id)
     {
+        $organisation = Organisation::find($id);
+
+        if (!$organisation) {
+            return response()->json([
+                'id' => (int)$id,
+                'name' => 'LCR Organisation',
+                'address_line_1' => '',
+                'address_line_2' => '',
+                'postcode' => '',
+                'logo_url' => null
+            ]);
+        }
+
         return response()->json($organisation);
     }
 
-    public function stats(Organisation $organisation, \Illuminate\Http\Request $request)
+    public function stats($id, \Illuminate\Http\Request $request)
     {
+        $organisation = Organisation::find($id);
+        $organisationId = $organisation ? $organisation->id : (int)$id;
+
         $customerId = $request->query('customer_id');
-        return response()->json($this->organisationService->getStats($organisation->id, $customerId ? (int)$customerId : null));
+        return response()->json($this->organisationService->getStats($organisationId, $customerId ? (int)$customerId : null));
     }
 }
