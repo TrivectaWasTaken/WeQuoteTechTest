@@ -34,6 +34,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
+  getSegmentOffset(index: number, payments: any[]): number {
+    let total = payments.reduce((sum, p) => sum + p.total_paid, 0);
+    if (total === 0) return 0;
+    let sumBefore = payments.slice(0, index).reduce((sum, p) => sum + p.total_paid, 0);
+    return (sumBefore / total) * 100;
+  }
+
+  getSegmentWidth(index: number, payments: any[]): number {
+    let total = payments.reduce((sum, p) => sum + p.total_paid, 0);
+    if (total === 0) return 0;
+    return (payments[index].total_paid / total) * 100;
+  }
+
   loadDashboardData(customerId?: string): void {
     this.subscriptions.add(this.projectService.getOrganisation().subscribe(data => this.organisation.set(data)));
 

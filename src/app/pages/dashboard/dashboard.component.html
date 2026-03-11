@@ -1,173 +1,264 @@
-<div class="min-h-screen bg-gray-100 p-8">
-  <div class="max-w-7xl mx-auto">
-    <header class="flex justify-between items-center mb-8">
-      <h1 class="text-2xl font-bold">Welcome back, {{ stats()?.current_user?.name || 'Lee Roche' }}</h1>
-      <div class="flex items-center space-x-4">
-        <button class="relative">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
-          <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+<div class="min-h-screen bg-[#f8fafc] p-6 lg:p-10">
+  <div class="max-w-[1440px] mx-auto">
+    <header class="flex justify-between items-center mb-10">
+      <div>
+        <h1 class="text-3xl font-extrabold text-[#000a2d] tracking-tight">Welcome back, {{ stats()?.current_user?.name || 'Lee Roche' }}</h1>
+        <p class="text-gray-500 mt-1">Here's what's happening with your projects today.</p>
+      </div>
+      <div class="flex items-center space-x-6">
+        <button class="relative p-2 text-gray-400 hover:text-[#0089ff] transition-colors">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+          <span class="absolute top-2 right-2 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white"></span>
         </button>
-        <div class="flex items-center space-x-2">
-          <div class="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center font-bold text-pink-700">{{ (stats()?.current_user?.name || 'Lee Roche') | slice:0:1 }}</div>
-          <div class="text-sm">
-            <p class="font-bold">{{ stats()?.current_user?.name || 'Lee Roche' }}</p>
-            <p class="text-gray-500 text-xs">View Profile</p>
+        <div class="flex items-center space-x-3 pl-6 border-l border-gray-200">
+          <div class="text-right hidden sm:block">
+            <p class="font-bold text-[#000a2d] leading-none">{{ stats()?.current_user?.name || 'Lee Roche' }}</p>
+            <p class="text-[#0089ff] text-xs font-semibold mt-1 cursor-pointer hover:underline">View Profile</p>
+          </div>
+          <div class="w-12 h-12 rounded-full bg-pink-100 border-2 border-white shadow-sm flex items-center justify-center font-bold text-pink-600 text-lg">
+            {{ (stats()?.current_user?.name || 'Lee Roche') | slice:0:1 }}
           </div>
         </div>
       </div>
     </header>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <div class="lg:col-span-1 space-y-8">
-        <div class="bg-white rounded-xl p-8 shadow-sm text-center">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Left Column: Organisation & Payments -->
+      <div class="lg:col-span-4 space-y-8">
+        <!-- Organisation Card -->
+        <div class="bg-white rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 text-center">
             @if(organisation()) {
-                @if(organisation()?.logo_url && organisation()?.logo_url !== 'undefined') {
-                    <img [src]="organisation()?.logo_url" [alt]="organisation()?.name" class="mx-auto mb-4">
-                } @else if(organisation()?.logo && organisation()?.logo !== 'undefined') {
-                    <img [src]="organisation()?.logo" [alt]="organisation()?.name" class="mx-auto mb-4">
-                } @else {
-                    <div class="w-32 h-32 mx-auto mb-4 bg-teal-100 rounded-full flex items-center justify-center">
-                        <span class="text-4xl font-bold text-teal-600">{{ (organisation()?.name || 'LCR') | slice:0:1 }}</span>
-                    </div>
-                }
-                <h2 class="text-xl font-bold">{{ organisation()?.name || 'LCR Integrated Systems' }}</h2>
-                <p class="text-gray-500 text-sm">
-                    {{ organisation()?.address_line_1 }}
-                    {{ organisation()?.address_line_2 }}
-                    {{ organisation()?.posttown || organisation()?.post_town }}
-                    {{ organisation()?.postcode }}
-                </p>
+                <div class="relative inline-block mb-6">
+                    @if(organisation()?.logo_url && organisation()?.logo_url !== 'undefined') {
+                        <img [src]="organisation()?.logo_url" [alt]="organisation()?.name" class="w-32 h-32 object-contain mx-auto">
+                    } @else if(organisation()?.logo && organisation()?.logo !== 'undefined') {
+                        <img [src]="organisation()?.logo" [alt]="organisation()?.name" class="w-32 h-32 object-contain mx-auto">
+                    } @else {
+                        <div class="w-32 h-32 mx-auto bg-teal-50 rounded-full flex items-center justify-center border-2 border-teal-100">
+                            <span class="text-4xl font-bold text-teal-600">{{ (organisation()?.name || 'L') | slice:0:1 }}</span>
+                        </div>
+                    }
+                </div>
+                <h2 class="text-2xl font-bold text-[#000a2d] mb-2">{{ organisation()?.name || 'LCR Integrated Systems' }}</h2>
+                <div class="text-gray-500 text-sm space-y-0.5 font-medium">
+                    <p>{{ organisation()?.address_line_1 }}</p>
+                    <p>{{ organisation()?.address_line_2 }}</p>
+                    <p>{{ organisation()?.posttown || organisation()?.post_town }} {{ organisation()?.postcode }}</p>
+                </div>
+                <button class="mt-8 w-full py-3 px-4 bg-[#f8fafc] text-[#000a2d] font-bold rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors">
+                    Edit Organisation
+                </button>
             } @else {
-                <div class="h-48 flex items-center justify-center">
-                    <span class="text-gray-400">Loading organisation...</span>
+                <div class="h-64 flex flex-col items-center justify-center space-y-4">
+                    <div class="w-12 h-12 border-4 border-[#0089ff] border-t-transparent rounded-full animate-spin"></div>
+                    <span class="text-gray-400 font-medium">Loading organisation...</span>
                 </div>
             }
         </div>
 
-        <div class="bg-white rounded-xl p-8 shadow-sm">
-            <h3 class="font-bold mb-4">Last Payment</h3>
-            <div class="space-y-4">
-              @for(payment of stats()?.last_payments; track payment) {
-                <div class="flex justify-between">
-                    <span class="text-gray-600">{{ payment.month_year }}</span>
-                    <span class="font-bold">£{{ payment.total_paid | number:'1.2-2' }}</span>
-                </div>
-              }
+        <!-- Last Payments Card -->
+        <div class="bg-white rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="font-bold text-lg text-[#000a2d]">Last Payment</h3>
+                <button class="text-[#0089ff] text-sm font-bold hover:underline">View All</button>
             </div>
-            <div class="mt-8 flex justify-center">
-                <div class="w-32 h-32 rounded-full border-8 border-teal-400 border-t-teal-100 flex items-center justify-center">
-                    <div class="text-center">
-                        <p class="text-xs text-gray-500">{{ stats()?.last_payments?.[0]?.month_year | slice:0:3 }}</p>
-                        <p class="font-bold">{{ stats()?.last_payments?.[0]?.total_paid | number:'1.2-2' }}</p>
+
+            <div class="flex items-center justify-center mb-10">
+                <div class="relative w-40 h-40">
+                    <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                        <circle cx="18" cy="18" r="16" fill="none" class="text-gray-100" stroke-width="3.5" stroke="currentColor"></circle>
+                        @for(payment of stats()?.last_payments; track payment; let i = $index) {
+                            <circle cx="18" cy="18" r="16" fill="none"
+                                    [ngClass]="{
+                                      'text-teal-400': i === 0,
+                                      'text-teal-300': i === 1,
+                                      'text-teal-200': i === 2
+                                    }"
+                                    stroke-width="3.5"
+                                    [attr.stroke-dasharray]="getSegmentWidth(i, stats()?.last_payments || []) + ', 100'"
+                                    [attr.stroke-dashoffset]="-getSegmentOffset(i, stats()?.last_payments || [])"
+                                    stroke-linecap="butt" stroke="currentColor"></circle>
+                        }
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                        <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ stats()?.last_payments?.[0]?.month_year | slice:0:3 }}</p>
+                        <p class="text-2xl font-extrabold text-[#000a2d]">£{{ stats()?.last_payments?.[0]?.total_paid | number:'1.0-0' }}</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="space-y-4">
+              @for(payment of stats()?.last_payments; track payment) {
+                <div class="flex justify-between items-center p-3 rounded-xl hover:bg-[#f8fafc] transition-colors group">
+                    <span class="text-gray-600 font-semibold group-hover:text-[#000a2d]">{{ payment.month_year }}</span>
+                    <span class="font-bold text-[#000a2d]">£{{ payment.total_paid | number:'1.2-2' }}</span>
+                </div>
+              }
             </div>
         </div>
       </div>
 
       <!-- Right Column: Stats & Projects -->
-      <div class="lg:col-span-2 space-y-8">
+      <div class="lg:col-span-8 space-y-8">
         <!-- Stats Row -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-white rounded-xl p-6 shadow-sm flex items-center justify-between">
-                <div>
-                    <h3 class="text-gray-500 font-bold mb-2">Projects Summary</h3>
-                    <div class="relative w-32 h-32">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Projects Summary Donut -->
+            <div class="bg-[#000a2d] rounded-2xl p-8 shadow-xl flex items-center justify-between text-white overflow-hidden relative">
+                <div class="relative z-10">
+                    <h3 class="text-gray-400 font-bold text-sm mb-6 uppercase tracking-wider">Projects Summary</h3>
+                    <div class="relative w-36 h-36">
                       @if(stats()) {
-                        <svg class="w-full h-full" viewBox="0 0 36 36">
-                            <path class="text-gray-200" stroke-width="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            <path class="text-teal-500" stroke-width="3" [attr.stroke-dasharray]="(((stats()?.total_paid ?? 0) / (((stats()?.total_paid ?? 0) + (stats()?.outstanding_invoices ?? 0)) || 1)) * 100) + ', 100'" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                            <!-- Background (Grey - Remaining) -->
+                            <circle cx="18" cy="18" r="16" fill="none" class="text-white/10" stroke-width="3.5" stroke="currentColor"></circle>
+
+                            <!-- Paid (Teal) -->
+                            <circle cx="18" cy="18" r="16" fill="none" class="text-teal-400" stroke-width="3.5"
+                                [attr.stroke-dasharray]="(((stats()?.total_paid ?? 0) / (((stats()?.total_paid ?? 0) + (stats()?.outstanding_invoices ?? 0) + (stats()?.remaining_to_pay ?? 0)) || 1)) * 100) + ', 100'"
+                                stroke-linecap="butt" stroke="currentColor"></circle>
+
+                            <!-- Outstanding (Orange) -->
+                            <circle cx="18" cy="18" r="16" fill="none" class="text-orange-400" stroke-width="3.5"
+                                [attr.stroke-dasharray]="(((stats()?.outstanding_invoices ?? 0) / (((stats()?.total_paid ?? 0) + (stats()?.outstanding_invoices ?? 0) + (stats()?.remaining_to_pay ?? 0)) || 1)) * 100) + ', 100'"
+                                [attr.stroke-dashoffset]="-(((stats()?.total_paid ?? 0) / (((stats()?.total_paid ?? 0) + (stats()?.outstanding_invoices ?? 0) + (stats()?.remaining_to_pay ?? 0)) || 1)) * 100)"
+                                stroke-linecap="butt" stroke="currentColor"></circle>
                         </svg>
                         <div class="absolute inset-0 flex flex-col items-center justify-center">
-                            <span class="text-3xl font-bold">{{ stats()?.total_projects }}</span>
-                            <span class="text-[10px] text-gray-500 uppercase">Total Projects</span>
+                            <span class="text-4xl font-extrabold">{{ stats()?.total_projects }}</span>
+                            <span class="text-[9px] text-gray-400 font-bold uppercase tracking-tighter">Total Projects</span>
                         </div>
                       }
                     </div>
                 </div>
-                <div class="text-right space-y-2">
+                <div class="text-right space-y-5 relative z-10">
                     <div>
-                        <span class="bg-teal-500 text-white text-[10px] px-2 py-1 rounded">You paid so far</span>
-                        <p class="text-2xl font-bold text-teal-600">£{{ stats()?.total_paid | number:'1.2-2' }}</p>
+                        <span class="inline-block bg-[#0089ff] text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide mb-1">You paid so far</span>
+                        <p class="text-2xl font-bold">£{{ stats()?.total_paid | number:'1.2-2' }}</p>
                     </div>
                     <div>
-                        <span class="bg-orange-400 text-white text-[10px] px-2 py-1 rounded">Outstanding invoices</span>
+                        <span class="inline-block bg-orange-500 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wide mb-1">Outstanding invoices</span>
                         <p class="text-2xl font-bold text-orange-400">£{{ stats()?.outstanding_invoices | number:'1.2-2' }}</p>
                     </div>
-                    <div>
-                        <span class="bg-gray-400 text-white text-[10px] px-2 py-1 rounded">Remaining Left to Pay</span>
-                        <p class="text-2xl font-bold text-gray-900">£{{ stats()?.remaining_to_pay | number:'1.2-2' }}</p>
+                    <div class="pt-4 border-t border-white/10">
+                        <span class="inline-block text-gray-400 text-[10px] font-bold uppercase tracking-wide mb-1">Remaining to Pay</span>
+                        <p class="text-2xl font-bold text-gray-200">£{{ stats()?.remaining_to_pay | number:'1.2-2' }}</p>
                     </div>
                 </div>
+                <!-- Subtle decorative circle -->
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-[#0089ff]/10 rounded-full blur-3xl"></div>
             </div>
 
-            <div class="bg-white rounded-xl p-6 shadow-sm">
-                <h3 class="text-gray-500 font-bold mb-4">You have <span class="text-red-500">{{ (stats()?.new_quotes ?? 0) + (stats()?.new_invoices ?? 0) }}</span> new items to review</h3>
+            <!-- Notifications Card -->
+            <div class="bg-white rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100">
+                <h3 class="text-[#000a2d] font-bold text-lg mb-6">Action Required</h3>
+                <p class="text-gray-500 text-sm mb-6">You have <span class="text-red-500 font-bold">{{ (stats()?.new_quotes ?? 0) + (stats()?.new_invoices ?? 0) }}</span> new items to review across your projects.</p>
+
                 <div class="space-y-4">
-                    <a [routerLink]="projects().length > 0 ? ['/project-hub', projects()[0].customer_id, projects()[0].id] : []" [queryParams]="{tab: 'quotes'}" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition cursor-pointer">
-                        <div class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 7h10M7 12h10M7 17h10"></path></svg>
-                            <span class="font-bold">Quotes</span>
+                    <a [routerLink]="projects().length > 0 ? ['/project-hub', projects()[0].customer_id, projects()[0].id] : []" [queryParams]="{tab: 'quotes'}"
+                       class="flex items-center justify-between p-4 bg-[#f8fafc] rounded-xl hover:bg-[#0089ff]/5 border border-transparent hover:border-[#0089ff]/20 transition-all group">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm text-gray-400 group-hover:text-[#0089ff] transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10M7 12h10M7 17h10"></path></svg>
+                            </div>
+                            <span class="font-bold text-[#000a2d]">New Quotes</span>
                         </div>
-                        <span class="bg-pink-100 text-pink-700 font-bold px-3 py-1 rounded">{{ stats()?.new_quotes }}</span>
+                        <span class="bg-pink-100 text-pink-700 font-extrabold px-4 py-1.5 rounded-full text-sm shadow-inner">{{ stats()?.new_quotes }}</span>
                     </a>
-                    <a [routerLink]="projects().length > 0 ? ['/project-hub', projects()[0].customer_id, projects()[0].id] : []" [queryParams]="{tab: 'invoices'}" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition cursor-pointer">
-                        <div class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 10h18M7 15h1m4 0h1m4 0h1m-7 4h12a2 2 0 002-2V5a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            <span class="font-bold">Invoices</span>
+
+                    <a [routerLink]="projects().length > 0 ? ['/project-hub', projects()[0].customer_id, projects()[0].id] : []" [queryParams]="{tab: 'invoices'}"
+                       class="flex items-center justify-between p-4 bg-[#f8fafc] rounded-xl hover:bg-[#0089ff]/5 border border-transparent hover:border-[#0089ff]/20 transition-all group">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm text-gray-400 group-hover:text-[#0089ff] transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m4 0h1m-7 4h12a2 2 0 002-2V5a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            </div>
+                            <span class="font-bold text-[#000a2d]">New Invoices</span>
                         </div>
-                        <span class="bg-pink-100 text-pink-700 font-bold px-3 py-1 rounded">{{ stats()?.new_invoices }}</span>
+                        <span class="bg-pink-100 text-pink-700 font-extrabold px-4 py-1.5 rounded-full text-sm shadow-inner">{{ stats()?.new_invoices }}</span>
                     </a>
                 </div>
             </div>
         </div>
 
         <!-- Projects Table -->
-        <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-            <div class="p-6 border-b">
-                <h3 class="font-bold text-xl">Projects Overview</h3>
+        <div class="bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 overflow-hidden">
+            <div class="p-8 border-b border-gray-100 flex justify-between items-center bg-white/50 backdrop-blur-sm">
+                <h3 class="font-extrabold text-2xl text-[#000a2d]">Projects Overview</h3>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm font-bold text-gray-400 uppercase tracking-wider">Status:</span>
+                    <select class="text-sm font-bold text-[#000a2d] bg-[#f8fafc] border border-gray-200 rounded-lg px-3 py-1 focus:ring-2 focus:ring-[#0089ff] outline-none">
+                        <option>All Projects</option>
+                        <option>Active</option>
+                        <option>Completed</option>
+                    </select>
+                </div>
             </div>
-            <table class="w-full text-left">
-                <thead class="bg-gray-50 text-gray-500 text-xs uppercase">
-                    <tr>
-                        <th class="px-6 py-4">Project</th>
-                        <th class="px-6 py-4">Quotes / Invoices</th>
-                        <th class="px-6 py-4">Created</th>
-                        <th class="px-6 py-4">Last Modified</th>
-                        <th class="px-6 py-4">Invoice Status</th>
-                        <th class="px-6 py-4 text-right">Total</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y">
-                @for(project of projects(); track project) {
-                    <tr [routerLink]="['/project-hub', project.customer_id, project.id]" class="hover:bg-gray-50 transition cursor-pointer">
-                        <td class="px-6 py-4">
-                            <p class="font-bold text-teal-600 hover:underline">{{ project.name }}</p>
-                            <p class="text-xs text-gray-400">Assigned to: {{ project.user_name }}</p>
-                        </td>
-                        <td class="px-6 py-4 text-sm">
-                            <p>{{ project.quote_count }} quote</p>
-                            <p>{{ project.invoice_count }} invoice</p>
-                        </td>
-                        <td class="px-6 py-4 text-sm text-gray-500">{{ project.created_datetime | date:'dd/MM/yyyy' }}</td>
-                        <td class="px-6 py-4 text-sm text-gray-500">{{ project.modified_datetime | date:'dd/MM/yyyy' }}</td>
-                        <td class="px-6 py-4">
-                            <div class="flex space-x-1">
-                        <span class="bg-gray-400 text-white text-[8px] px-1 rounded">NOT INVOICED</span>
-                        <span class="bg-orange-400 text-white text-[8px] px-1 rounded">UNPAID</span>
-                        <span class="bg-teal-400 text-white text-[8px] px-1 rounded">PAID</span>
-                    </div>
-                    <div class="mt-2 h-1.5 w-full bg-gray-100 rounded-full overflow-hidden flex">
-                        <div class="h-full bg-teal-400" [style.width.%]="(((project.paid_total ?? 0) / (project.net_total || 1)) * 100) || 0"></div>
-                        <div class="h-full bg-orange-300" [style.width.%]="(((project.outstanding_total ?? 0) / (project.net_total || 1)) * 100) || 0"></div>
-                        <div class="h-full bg-gray-400" [style.width.%]="(((project.not_invoiced_total ?? 0) / (project.net_total || 1)) * 100) || 0"></div>
-                    </div>
-                </td>
-                        <td class="px-6 py-4 text-right font-bold">£{{ project.net_total | number:'1.2-2' }}</td>
-                    </tr>
-                }
-                </tbody>
-            </table>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-[#f8fafc] text-gray-400 text-[11px] font-black uppercase tracking-[0.1em]">
+                        <tr>
+                            <th class="px-8 py-5">Project Name</th>
+                            <th class="px-8 py-5">Invoices / Quotes</th>
+                            <th class="px-8 py-5">Date Created</th>
+                            <th class="px-8 py-5">Payment Progress</th>
+                            <th class="px-8 py-5 text-right">Total (Ex. VAT)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-50">
+                    @for(project of projects(); track project) {
+                        <tr [routerLink]="['/project-hub', project.customer_id, project.id]" class="hover:bg-[#0089ff]/5 transition-colors cursor-pointer group">
+                            <td class="px-8 py-6">
+                                <p class="font-extrabold text-[#000a2d] group-hover:text-[#0089ff] transition-colors text-lg">{{ project.name }}</p>
+                                <p class="text-xs font-bold text-gray-400 mt-0.5">Assigned to: {{ project.user_name }}</p>
+                            </td>
+                            <td class="px-8 py-6">
+                                <div class="flex items-center space-x-3">
+                                    <div class="text-center bg-[#f8fafc] rounded-lg px-3 py-1.5 border border-gray-100">
+                                        <p class="text-[10px] font-black text-gray-400 uppercase leading-none mb-1">Quotes</p>
+                                        <p class="font-bold text-[#000a2d] leading-none">{{ project.quote_count }}</p>
+                                    </div>
+                                    <div class="text-center bg-[#f8fafc] rounded-lg px-3 py-1.5 border border-gray-100">
+                                        <p class="text-[10px] font-black text-gray-400 uppercase leading-none mb-1">Invoices</p>
+                                        <p class="font-bold text-[#000a2d] leading-none">{{ project.invoice_count }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-8 py-6">
+                                <p class="text-sm font-bold text-[#000a2d]">{{ project.created_datetime | date:'dd MMM yyyy' }}</p>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase mt-0.5">Modified: {{ project.modified_datetime | date:'dd/MM/yy' }}</p>
+                            </td>
+                            <td class="px-8 py-6 min-w-[240px]">
+                                <div class="flex justify-between items-end mb-2">
+                                    <div class="flex space-x-2">
+                                        <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+                                        <span class="text-[10px] font-black text-gray-400 uppercase tracking-tighter">Paid</span>
+                                    </div>
+                                    <p class="text-xs font-black text-[#000a2d]">£{{ project.paid_total | number:'1.0-0' }} <span class="text-gray-300">/ £{{ project.net_total | number:'1.0-0' }}</span></p>
+                                </div>
+                                <div class="h-2.5 w-full bg-gray-100 rounded-full overflow-hidden flex shadow-inner">
+                                    <div class="h-full bg-teal-400 transition-all duration-500" [style.width.%]="(((project.paid_total ?? 0) / (project.net_total || 1)) * 100) || 0"></div>
+                                    <div class="h-full bg-orange-300 transition-all duration-500" [style.width.%]="(((project.outstanding_total ?? 0) / (project.net_total || 1)) * 100) || 0"></div>
+                                    <div class="h-full bg-gray-300 transition-all duration-500" [style.width.%]="(((project.not_invoiced_total ?? 0) / (project.net_total || 1)) * 100) || 0"></div>
+                                </div>
+                                <div class="flex space-x-4 mt-2">
+                                    <div class="flex items-center space-x-1.5">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-orange-300"></div>
+                                        <span class="text-[9px] font-bold text-gray-400 uppercase">Unpaid</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1.5">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+                                        <span class="text-[9px] font-bold text-gray-400 uppercase">Not Invoiced</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-8 py-6 text-right">
+                                <p class="text-xl font-black text-[#000a2d]">£{{ project.net_total | number:'1.2-2' }}</p>
+                                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">GBP</p>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
         </div>
       </div>
     </div>
