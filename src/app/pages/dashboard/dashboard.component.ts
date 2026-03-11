@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.subscriptions.add(this.projectService.getCustomer(customerId).subscribe({
             next: (customer) => {
                 const orgId = customer.organisation_id || '1';
-                this.organisation.set(customer.organisation || { name: 'LCR Organisation' });
+                this.organisation.set(customer.organisation || { company_name: 'LCR Integrated Systems (STAGING)' });
 
                 this.subscriptions.add(this.projectService.getProjects(customerId).subscribe(data => this.projects.set(data)));
                 this.subscriptions.add(this.projectService.getStats(orgId.toString(), customerId).subscribe(data => this.stats.set(data)));
@@ -101,13 +101,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   private loadDefaultDashboard(customerId?: string): void {
     this.subscriptions.add(this.projectService.getOrganisation('1').subscribe({
-        next: (data) => this.organisation.set(data || { name: 'LCR Organisation' }),
-        error: () => this.organisation.set({ name: 'LCR Organisation' })
+        next: (data) => this.organisation.set(data || { company_name: 'LCR Integrated Systems (STAGING)' }),
+        error: () => this.organisation.set({ company_name: 'LCR Integrated Systems (STAGING)' })
     }));
     this.subscriptions.add(this.projectService.getStats('1', customerId).subscribe(data => this.stats.set(data)));
     this.subscriptions.add(this.projectService.getProjects(customerId).subscribe(data => {
         this.projects.set(data);
-        if (data && data.length > 0 && this.organisation()?.name === 'LCR Organisation') {
+        if (data && data.length > 0 && (!this.organisation() || this.organisation()?.company_name === 'LCR Integrated Systems (STAGING)')) {
              // If we have projects, try to update the organisation from the first one
              const firstProject = data[0];
              const orgId = firstProject?.organisation_id;

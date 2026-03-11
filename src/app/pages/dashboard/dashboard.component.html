@@ -30,16 +30,16 @@
             @if(organisation()) {
                 <div class="relative inline-block mb-6">
                     @if(organisation()?.logo_url && organisation()?.logo_url !== 'undefined') {
-                        <img [src]="organisation()?.logo_url" [alt]="organisation()?.name" class="w-32 h-32 object-contain mx-auto">
+                        <img [src]="organisation()?.logo_url" [alt]="organisation()?.company_name || organisation()?.name" class="w-32 h-32 object-contain mx-auto">
                     } @else if(organisation()?.logo && organisation()?.logo !== 'undefined') {
-                        <img [src]="organisation()?.logo" [alt]="organisation()?.name" class="w-32 h-32 object-contain mx-auto">
+                        <img [src]="organisation()?.logo" [alt]="organisation()?.company_name || organisation()?.name" class="w-32 h-32 object-contain mx-auto">
                     } @else {
                         <div class="w-32 h-32 mx-auto flex items-center justify-center">
-                            <span class="text-6xl font-black text-[#000a2d]">{{ (organisation()?.name || 'LCR Integrated Systems') | slice:0:1 }}</span>
+                            <span class="text-6xl font-black text-[#000a2d]">{{ (organisation()?.company_name || organisation()?.name || 'LCR Integrated Systems') | slice:0:1 }}</span>
                         </div>
                     }
                 </div>
-                <h2 class="text-xl font-black text-[#000a2d] mb-3">{{ organisation()?.name || 'LCR Organisation' }}</h2>
+                <h2 class="text-xl font-black text-[#000a2d] mb-3">{{ organisation()?.company_name || organisation()?.name || 'LCR Integrated Systems (STAGING)' }}</h2>
                 <div class="text-gray-400 text-sm space-y-0.5 font-bold">
                     <p>{{ organisation()?.address_line_1 }}</p>
                     <p>{{ organisation()?.address_line_2 }}</p>
